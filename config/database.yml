@@ -22,6 +22,8 @@ default: &default
 development:
   <<: *default
   database: private_events_development
+  username: postgres
+  password: postroot
 
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
@@ -79,6 +81,7 @@ test:
 #
 production:
   <<: *default
+  url: <%= ENV["DATABASE_URL"] %>
   database: private_events_production
   username: private_events
   password: <%= ENV["PRIVATE_EVENTS_DATABASE_PASSWORD"] %>
