@@ -1,0 +1,24 @@
+<h2>All the events</h2>
+<div>
+  <p>Future Events (<%= @future_events.count %>)</p>
+  <div>
+    <% @future_events.each do |event| %>
+    <%= render event%>
+      <hr>
+    <% end %>
+  </div>
+</div>
+
+<div>
+  <p>Past Events (<%= @past_events.count %>)</p>
+  <div>
+    <% if @past_events.any? %>
+      <% @past_events.each do |event| %>
+        <%= render event%>
+        <hr>
+      <% end %>
+    <% else %>
+      <p>There are no past events</p>
+      <%end %>
+  </div>
+</div>

@@ -11,6 +11,45 @@
   </head>
 
   <body>
+  <div>
+    <div>
+      <div>
+        <h1>
+          <%= link_to 'Private Events', root_path %>
+        </h1>
+      </div>
+      <% if !user_signed_in? %>
+        <div>
+          <%= button_to "Log In", new_user_session_url, method: "get" %>
+          <%= button_to "Sign Up", new_user_registration_url, method: "get" %>
+        </div>
+      <% else %>
+        <div>
+          <p>
+            <%= "Currently signed in as: #{current_user.full_name}" %>
+          </p>
+          <%= button_to "Log Out", destroy_user_session_url, method: "delete" %>
+          <%= link_to "Create a New Event", new_event_path %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <% if alert || notice %>
+    <div>
+      <div>
+        <% if notice %>
+          <p role="alert"><%= notice %></p>
+        <% end %>
+        <% if alert %>
+          <p role="alert"><%= alert %></p>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <div>
     <%= yield %>
+  </div>
   </body>
 </html>

@@ -1,0 +1,29 @@
+<div>
+  <p>
+    <%=@event.title %>
+  </p>
+  <p>
+    <%=@event.user.full_name %>
+  </p>
+  <p>
+    <%=@event.description %>
+  </p>
+  <p>
+    <%=@event.location %>
+  </p>
+  <p>
+    <%= @event.event_date.strftime('%Y-%m-%d') %>
+  </p>
+  <p>
+    <%= @event.event_date.strftime('%I:%M %p') %>
+  </p>
+  <div>
+    <% if current_user == @event.user %>
+      <%= link_to "Edit", edit_event_path %>
+      <%= link_to "Destroy", event_path(@event), data: {
+        turbo_method: :delete,
+        turbo_confirm: "Are you sure?"
+      } %>
+      <%end %>
+  </div>
+</div>

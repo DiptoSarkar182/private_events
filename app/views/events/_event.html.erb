@@ -1,0 +1,17 @@
+<div>
+  <p>
+    <%=link_to event.title, event_path(event) %>
+  </p>
+  <p>
+    <%=event.user.full_name %>
+  </p>
+  <p>
+    <%=event.location %>
+  </p>
+  <p>
+    <%= event.event_date.strftime('%Y-%m-%d') %>
+  </p>
+  <p>
+    <%= event.event_date.strftime('%I:%M %p') %>
+  </p>
+</div>
