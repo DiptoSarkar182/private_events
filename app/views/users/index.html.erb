@@ -1,0 +1,23 @@
+<h1>My Past Hosted Events</h1>
+
+<% @past_hosted_events.each do |event| %>
+  <p><%= link_to event.title, event_path(event) %></p>
+<% end %>
+
+<h1>My Future Hosted Events</h1>
+
+<% @future_hosted_events.each do |event| %>
+  <p><%= link_to event.title, event_path(event) %></p>
+<% end %>
+
+<h1>My Past Attended Events</h1>
+
+<% @past_attended_events.each do |event| %>
+  <p><%= link_to event.title, event_path(event) %></p>
+<% end %>
+
+<h1>My Future Attended Events</h1>
+
+<% @future_attended_events.each do |event| %>
+  <p><%= link_to event.title, event_path(event) %></p>
+<% end %>

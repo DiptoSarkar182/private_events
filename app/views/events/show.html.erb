@@ -20,10 +20,44 @@
   <div>
     <% if current_user == @event.user %>
       <%= link_to "Edit", edit_event_path %>
-      <%= link_to "Destroy", event_path(@event), data: {
+      <%= link_to "Delete", event_path(@event), data: {
         turbo_method: :delete,
         turbo_confirm: "Are you sure?"
       } %>
       <%end %>
+    <div>
+      <% if @event.event_date > Time.now %>
+        <% if @event.attendees.exists?(current_user.id) || @event.invitations.accepted.exists?(invitee: current_user) %>
+          <%= button_to "Leave", event_joining_path(event_id: @event.id), method: :delete %>
+          <%= form_with url: invitations_path do |form| %>
+            <%= form.text_field :email, placeholder: "Send invite with email" %>
+            <%= form.hidden_field :event_id, value: @event.id %>
+            <%= form.submit "Send Invitation" %>
+          <% end %>
+        <% else %>
+          <%= button_to "Join", event_joinings_path(event_id: @event.id), method: :post %>
+        <% end %>
+      <% else %>
+        <p> You cannot join the event now</p>
+      <% end %>
+    </div>
+  </div>
+
+  <div>
+    Attendees:
+    <% if @event.attendees.empty? %>
+      Nobody joined this event
+    <% else %>
+      <ul>
+        <% @event.attendees.each do |attendee| %>
+          <li>
+            <%= attendee.first_name %> <%= attendee.last_name %>
+            <% if attendee == current_user %>
+              (That's you)
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
   </div>
 </div>

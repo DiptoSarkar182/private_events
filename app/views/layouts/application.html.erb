@@ -30,6 +30,8 @@
           </p>
           <%= button_to "Log Out", destroy_user_session_url, method: "delete" %>
           <%= link_to "Create a New Event", new_event_path %>
+          <%= link_to "Invitations(#{@invitations_counter})", invitations_path %>
+          <%= link_to "Profile", users_path %>
         </div>
       <% end %>
     </div>

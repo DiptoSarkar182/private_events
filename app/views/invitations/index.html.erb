@@ -1,0 +1,22 @@
+<h1>Invitations</h1>
+
+<% if @invitations.empty? %>
+  <p>There are no invitations.</p>
+<% else %>
+  <% @invitations.each do |invitation| %>
+    <% unless invitation.event.attendees.exists?(current_user.id) %>
+      <div>
+        <p>Invitation from: <%= invitation.inviter.full_name %></p>
+        <p>Event: <%= link_to invitation.event.title, event_path(invitation.event) %></p>
+        <% if invitation.pending? %>
+          <%= button_to "Accept", accept_invitation_path(invitation), method: :post %>
+          <%= button_to "Reject", reject_invitation_path(invitation), method: :post %>
+        <% elsif invitation.accepted? %>
+          <p>You have accepted this event's invitation.</p>
+        <% elsif invitation.rejected? %>
+          <p>You have rejected this event's invitation.</p>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>

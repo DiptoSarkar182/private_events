@@ -34,6 +34,7 @@ class EventsController < ApplicationController
     @event = current_user.events.build(event_params)
     respond_to do |format|
       if @event.save
+        @event.attendees << current_user
         format.html {redirect_to root_path, notice: "Event created successfully"}
       else
         format.html {render 'new', status: :unprocessable_entity }

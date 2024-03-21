@@ -2,10 +2,14 @@
 <div>
   <p>Future Events (<%= @future_events.count %>)</p>
   <div>
-    <% @future_events.each do |event| %>
-    <%= render event%>
-      <hr>
-    <% end %>
+    <% if @future_events.any? %>
+      <% @future_events.each do |event| %>
+      <%= render event%>
+        <hr>
+      <% end %>
+    <% else %>
+      <p>There are no future events.</p>
+    <%end %>
   </div>
 </div>
 
@@ -18,7 +22,7 @@
         <hr>
       <% end %>
     <% else %>
-      <p>There are no past events</p>
+      <p>There are no past events.</p>
       <%end %>
   </div>
 </div>
