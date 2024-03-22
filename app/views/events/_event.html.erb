@@ -1,22 +1,20 @@
 <div>
-  <p>
-    <%=link_to event.title, event_path(event) %>
+  <p class="text-lg font-semibold mb-1">
+    <%= link_to event.title, event_path(event), class: 'text-indigo-600 hover:text-indigo-900' %>
   </p>
-  <p>
-    <%=event.user.full_name %>
+  <p class="text-gray-600 mb-1">
+    <%= event.user.full_name %>
   </p>
-  <p>
-    <%=event.location %>
+  <p class="text-gray-600 mb-1">
+    <%= event.location %>
   </p>
-  <p>
+  <p class="text-gray-600 mb-1">
     <%= event.event_date.strftime('%Y-%m-%d') %>
   </p>
-  <p>
+  <p class="text-gray-600 mb-1">
     <%= event.event_date.strftime('%I:%M %p') %>
   </p>
-  <p>
+  <p class="text-gray-600">
     Total Attendees: <%= event.attendees.count %>
-
-
   </p>
 </div>

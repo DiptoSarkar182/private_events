@@ -1,9 +1,8 @@
-<%= form_with(model: event) do |form| %>
+<%= form_with(model: event, class: "space-y-6") do |form| %>
   <% if event.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
-
-      <ul>
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+      <h2 class="font-bold mb-2"><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
+      <ul class="list-disc pl-4">
         <% event.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
@@ -11,27 +10,27 @@
     </div>
   <% end %>
 
-  <div class='field'>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div class='field'>
-    <%= form.label :location, style: "display: block" %>
-    <%= form.text_field :location %>
-  </div>
-
-  <div class='field'>
-    <%= form.label :event_date, style: "display: block" %>
-    <%= form.datetime_field :event_date %>
-  </div>
-
-  <div class='field'>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
+  <div>
+    <%= form.label :title, class: "block text-gray-700 font-semibold mb-2" %>
+    <%= form.text_field :title, class: "w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.label :location, class: "block text-gray-700 font-semibold mb-2" %>
+    <%= form.text_field :location, class: "w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" %>
+  </div>
+
+  <div>
+    <%= form.label :event_date, class: "block text-gray-700 font-semibold mb-2" %>
+    <%= form.datetime_field :event_date, class: "w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" %>
+  </div>
+
+  <div>
+    <%= form.label :description, class: "block text-gray-700 font-semibold mb-2" %>
+    <%= form.text_area :description, class: "w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" %>
+  </div>
+
+  <div>
+    <%= form.submit  class: "bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 px-4 rounded" %>
   </div>
 <% end %>

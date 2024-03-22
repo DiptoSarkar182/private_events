@@ -1,20 +1,22 @@
-<h1>Invitations</h1>
+<h1 class="text-2xl font-bold mb-4">Invitations</h1>
 
 <% if @invitations.empty? %>
-  <p>There are no invitations.</p>
+  <p class="text-lg text-gray-500">There are no invitations.</p>
 <% else %>
   <% @invitations.each do |invitation| %>
     <% unless invitation.event.attendees.exists?(current_user.id) %>
-      <div>
-        <p>Invitation from: <%= invitation.inviter.full_name %></p>
-        <p>Event: <%= link_to invitation.event.title, event_path(invitation.event) %></p>
+      <div class="border p-4 rounded-lg mb-4">
+        <p class="text-lg font-semibold">Invitation from: <%= invitation.inviter.full_name %></p>
+        <p class="mb-2">Event: <%= link_to invitation.event.title, event_path(invitation.event), class: "text-blue-500 hover:underline" %></p>
         <% if invitation.pending? %>
-          <%= button_to "Accept", accept_invitation_path(invitation), method: :post %>
-          <%= button_to "Reject", reject_invitation_path(invitation), method: :post %>
+          <div class="flex gap-4">
+            <%= button_to "Accept", accept_invitation_path(invitation), method: :post, class: "px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600" %>
+            <%= button_to "Reject", reject_invitation_path(invitation), method: :post, class: "px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600" %>
+          </div>
         <% elsif invitation.accepted? %>
-          <p>You have accepted this event's invitation.</p>
+          <p class="text-green-500">You have accepted this event's invitation.</p>
         <% elsif invitation.rejected? %>
-          <p>You have rejected this event's invitation.</p>
+          <p class="text-red-500">You have rejected this event's invitation.</p>
         <% end %>
       </div>
     <% end %>

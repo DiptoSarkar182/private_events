@@ -1,59 +1,60 @@
-<div>
-  <p>
-    <%=@event.title %>
-  </p>
-  <p>
-    <%=@event.user.full_name %>
-  </p>
-  <p>
-    <%=@event.description %>
-  </p>
-  <p>
-    <%=@event.location %>
-  </p>
-  <p>
-    <%= @event.event_date.strftime('%Y-%m-%d') %>
-  </p>
-  <p>
-    <%= @event.event_date.strftime('%I:%M %p') %>
-  </p>
-  <div>
-    <% if current_user == @event.user %>
-      <%= link_to "Edit", edit_event_path %>
-      <%= link_to "Delete", event_path(@event), data: {
-        turbo_method: :delete,
-        turbo_confirm: "Are you sure?"
-      } %>
-      <%end %>
+<div class="max-w-3xl mx-auto bg-white shadow-md rounded-md px-8 py-6">
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold mb-2"><%= @event.title %></h1>
+    <p class="text-gray-600">Hosted by <%= @event.user.full_name %></p>
+  </div>
+
+  <div class="mb-6">
+    <p class="text-gray-700 mb-2"><%= @event.description %></p>
+    <p class="text-gray-600 mb-1"><%= @event.location %></p>
+    <p class="text-gray-600 mb-1">
+      Date: <%= @event.event_date.strftime('%Y-%m-%d') %>
+    </p>
+    <p class="text-gray-600">Time: <%= @event.event_date.strftime('%I:%M %p') %></p>
+  </div>
+
+  <div class="mb-6 flex items-center justify-between">
+    <div class="flex items-center">
+      <% if current_user == @event.user %>
+        <%= link_to "Edit", edit_event_path, class: "bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 px-4 rounded" %>
+        <%= link_to "Delete", event_path(@event), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded ml-2" %>
+      <% end %>
+
+      <% if @event.event_date > Time.now %>
+        <% if @event.attendees.exists?(current_user.id) || @event.invitations.accepted.exists?(invitee: current_user) %>
+          <%= button_to "Leave", event_joining_path(event_id: @event.id), method: :delete, class: "bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded ml-2" %>
+        <% else %>
+          <%= button_to "Join", event_joinings_path(event_id: @event.id), method: :post, class: "bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded ml-2" %>
+        <% end %>
+      <% end %>
+    </div>
+
     <div>
       <% if @event.event_date > Time.now %>
         <% if @event.attendees.exists?(current_user.id) || @event.invitations.accepted.exists?(invitee: current_user) %>
-          <%= button_to "Leave", event_joining_path(event_id: @event.id), method: :delete %>
-          <%= form_with url: invitations_path do |form| %>
-            <%= form.text_field :email, placeholder: "Send invite with email" %>
+          <%= form_with url: invitations_path, class: "inline-flex items-center" do |form| %>
+            <%= form.text_field :email, placeholder: "Send invite with email", class: "py-2 px-3 border border-gray-300 rounded-l" %>
             <%= form.hidden_field :event_id, value: @event.id %>
-            <%= form.submit "Send Invitation" %>
+            <%= form.submit "Send Invitation", class: "bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 px-4 rounded-r" %>
           <% end %>
-        <% else %>
-          <%= button_to "Join", event_joinings_path(event_id: @event.id), method: :post %>
         <% end %>
       <% else %>
-        <p> You cannot join the event now</p>
+        <p class="text-gray-600">You cannot join the event now</p>
       <% end %>
     </div>
   </div>
 
   <div>
-    Attendees:
+    <h2 class="text-lg font-semibold mb-2">Attendees:</h2>
     <% if @event.attendees.empty? %>
-      Nobody joined this event
+      <p class="text-gray-600">Nobody joined this event</p>
     <% else %>
-      <ul>
+      <ul class="list-disc pl-4">
         <% @event.attendees.each do |attendee| %>
-          <li>
+          <li class="text-gray-600">
             <%= attendee.first_name %> <%= attendee.last_name %>
             <% if attendee == current_user %>
-              (That's you)
+              <span class="text-green-600">(That's you)</span>
             <% end %>
           </li>
         <% end %>

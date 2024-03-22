@@ -1,23 +1,29 @@
-<h1>My Past Hosted Events</h1>
+<div class="container mx-auto px-4">
+  <h1 class="text-2xl font-bold mb-4">My Hosted Events</h1>
 
-<% @past_hosted_events.each do |event| %>
-  <p><%= link_to event.title, event_path(event) %></p>
-<% end %>
+  <h2 class="text-xl font-semibold mb-2">Future Events</h2>
 
-<h1>My Future Hosted Events</h1>
+  <% @future_hosted_events.each do |event| %>
+    <p class="mb-2"><%= link_to event.title, event_path(event), class: "text-blue-500 hover:underline" %></p>
+  <% end %>
 
-<% @future_hosted_events.each do |event| %>
-  <p><%= link_to event.title, event_path(event) %></p>
-<% end %>
+  <h2 class="text-xl font-semibold mb-2 mt-4">Past Events</h2>
 
-<h1>My Past Attended Events</h1>
+  <% @past_hosted_events.each do |event| %>
+    <p class="mb-2"><%= link_to event.title, event_path(event), class: "text-blue-500 hover:underline" %></p>
+  <% end %>
 
-<% @past_attended_events.each do |event| %>
-  <p><%= link_to event.title, event_path(event) %></p>
-<% end %>
+  <h1 class="text-2xl font-bold mb-4 mt-6">My Attended Events</h1>
 
-<h1>My Future Attended Events</h1>
+  <h2 class="text-xl font-semibold mb-2">Future Events</h2>
 
-<% @future_attended_events.each do |event| %>
-  <p><%= link_to event.title, event_path(event) %></p>
-<% end %>
+  <% @future_attended_events.each do |event| %>
+    <p class="mb-2"><%= link_to event.title, event_path(event), class: "text-blue-500 hover:underline" %></p>
+  <% end %>
+
+  <h2 class="text-xl font-semibold mb-2 mt-4">Past Events</h2>
+
+  <% @past_attended_events.each do |event| %>
+    <p class="mb-2"><%= link_to event.title, event_path(event), class: "text-blue-500 hover:underline" %></p>
+  <% end %>
+</div>

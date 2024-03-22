@@ -1,28 +1,41 @@
-<h2>All the events</h2>
-<div>
-  <p>Future Events (<%= @future_events.count %>)</p>
-  <div>
-    <% if @future_events.any? %>
-      <% @future_events.each do |event| %>
-      <%= render event%>
-        <hr>
-      <% end %>
-    <% else %>
-      <p>There are no future events.</p>
-    <%end %>
-  </div>
-</div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <p class="text-3xl font-bold text-gray-800 mb-6">All the events</p>
 
-<div>
-  <p>Past Events (<%= @past_events.count %>)</p>
-  <div>
-    <% if @past_events.any? %>
-      <% @past_events.each do |event| %>
-        <%= render event%>
-        <hr>
+  <div class="mb-8">
+    <p class="text-lg font-semibold mb-2">Future Events (<%= @future_events.count %>)</p>
+    <div class="bg-white shadow overflow-hidden rounded-md">
+      <% if @future_events.any? %>
+        <ul class="divide-y divide-gray-200">
+          <% @future_events.each do |event| %>
+            <li class="px-4 py-5 sm:px-6">
+              <%= render event %>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <div class="px-4 py-5 sm:p-6">
+          <p>There are no future events.</p>
+        </div>
       <% end %>
-    <% else %>
-      <p>There are no past events.</p>
-      <%end %>
+    </div>
+  </div>
+
+  <div class="mb-8">
+    <p class="text-lg font-semibold mb-2">Past Events (<%= @past_events.count %>)</p>
+    <div class="bg-white shadow overflow-hidden rounded-md">
+      <% if @past_events.any? %>
+        <ul class="divide-y divide-gray-200">
+          <% @past_events.each do |event| %>
+            <li class="px-4 py-5 sm:px-6">
+              <%= render event %>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <div class="px-4 py-5 sm:p-6">
+          <p>There are no past events.</p>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
