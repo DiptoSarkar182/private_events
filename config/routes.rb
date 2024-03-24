@@ -17,5 +17,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  # another way to define routes: get '/events/:id', to: 'events#show', as: 'custom_event'
   root "events#index"
 end

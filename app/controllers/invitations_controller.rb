@@ -13,8 +13,8 @@ class InvitationsController < ApplicationController
         redirect_to @event, alert: 'Sending invite to yourself, really?'
       elsif @event.attendees.exists?(@invitee.id)
         redirect_to @event, alert: 'Cannot send invite because user already joined the event.'
-      elsif Invitation.pending.exists?(event_id: params[:event_id], invitee: @invitee)
-        redirect_to @event, alert: 'Invitation sent. Wait for response.'
+      elsif Invitation.pending.exists?(event_id: params[:event_id], inviter: current_user, invitee: @invitee)
+        redirect_to @event, alert: 'You have already sent an invitation. Wait for response.'
       else
         @invitation = Invitation.new(event_id: params[:event_id], inviter: current_user, invitee: @invitee)
         if @invitation.save

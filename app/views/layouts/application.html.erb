@@ -9,6 +9,7 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%= favicon_link_tag 'icons8-event-96.png' %>
   </head>
 
   <body class="bg-gray-100 min-h-screen flex flex-col">
@@ -18,7 +19,7 @@
         <div class="flex">
           <div class="flex-shrink-0 flex items-center">
             <h1 class="text-2xl font-bold">
-              <%= link_to 'Private Events', root_path, class: 'text-indigo-600 hover:text-indigo-800' %>
+              <%= link_to 'Host Events', root_path, class: 'glow-link' %>
             </h1>
           </div>
         </div>

@@ -13,10 +13,6 @@
             <%= button_to "Accept", accept_invitation_path(invitation), method: :post, class: "px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600" %>
             <%= button_to "Reject", reject_invitation_path(invitation), method: :post, class: "px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600" %>
           </div>
-        <% elsif invitation.accepted? %>
-          <p class="text-green-500">You have accepted this event's invitation.</p>
-        <% elsif invitation.rejected? %>
-          <p class="text-red-500">You have rejected this event's invitation.</p>
         <% end %>
       </div>
     <% end %>
