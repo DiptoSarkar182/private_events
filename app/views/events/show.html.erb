@@ -34,7 +34,7 @@
       <% if @event.event_date > Time.now %>
         <% if @event.attendees.exists?(current_user.id) || @event.invitations.accepted.exists?(invitee: current_user) %>
           <%= form_with url: invitations_path, class: "inline-flex items-center" do |form| %>
-            <%= form.text_field :email, placeholder: "Send invite with email", class: "py-2 px-3 border border-gray-300 rounded-l" %>
+            <%= form.text_field :email, placeholder: "Send invite with email", required: true, class: "py-2 px-3 border border-gray-300 rounded-l" %>
             <%= form.hidden_field :event_id, value: @event.id %>
             <%= form.submit "Send Invitation", class: "bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 px-4 rounded-r" %>
           <% end %>

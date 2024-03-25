@@ -30,8 +30,12 @@ class InvitationsController < ApplicationController
 
   def accept
     @invitation.accepted!
-    @invitation.destroy
     @invitation.event.attendees << current_user
+
+    # Destroy all other pending invitations for the same event
+    Invitation.where(event: @invitation.event, invitee: current_user, status: 'pending').destroy_all
+
+    @invitation.destroy
     redirect_to invitations_path, notice: 'Invitation accepted.'
   end
 
