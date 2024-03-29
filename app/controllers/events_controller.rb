@@ -23,9 +23,9 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     respond_to do |format|
       if @event.update(event_params)
-        format.html {redirect_to root_path, notice: "Event updated successfully"}
+        format.html {redirect_to event_path, notice: "Event updated successfully"}
       else
-        format.html {render 'new', status: :unprocessable_entity }
+        format.html {render 'edit', status: :unprocessable_entity }
       end
     end
   end
