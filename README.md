@@ -41,7 +41,7 @@ You need to have Ruby and Rails installed on your machine. See [this guide](http
 
 ### Installing
 
-1. Clone the repository: `git clone https://github.com/DiptoSarkar182/private_events`
+1. Clone the repository: `git clone https://github.com/DiptoSarkar182/private_events.git`
 2. Navigate into the project directory: `cd private_events`
 3. Install the dependencies: `bundle install`
 4. Set up the database: `rails db:create db:migrate`
