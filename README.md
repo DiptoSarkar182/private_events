@@ -23,11 +23,7 @@ Please note that the app is hosted on a free tier and may take a moment to load 
 - Users can edit and delete the events they created.
 - Users can remove themselves as an attendee to their attended events.
 
-## Technologies Used
 
-- Ruby on Rails
-- Postgresql
-- Devise
 
 ## Future Features
 
