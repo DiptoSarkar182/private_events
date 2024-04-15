@@ -23,6 +23,10 @@ Please note that the app is hosted on a free tier and may take a moment to load 
 - Users can edit and delete the events they created.
 - Users can remove themselves as an attendee to their attended events.
 
+## Screenshots
+
+![SS1](./app/assets/images/ss1.PNG)
+![SS2](./app/assets/images/ss2.PNG)
 
 
 ## Future Features
