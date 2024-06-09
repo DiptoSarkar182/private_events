@@ -29,12 +29,6 @@ Please note that the app is hosted on a free tier and may take a moment to load 
 ![SS2](./app/assets/images/ss2.PNG)
 
 
-## Future Features
-
-- **Private Events:** Enable users to create exclusive events with attendance by invitation only.
-- **Real-Time Updates:** Implement Action Cable for real-time updates on event invitations and postings.
-- **Email Invitations:** Extend functionality to send event invitations directly to a user's email.
-
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
